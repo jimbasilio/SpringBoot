@@ -3,18 +3,20 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.demo</groupId>
-	<artifactId>demo</artifactId>
+	<groupId>jim</groupId>
+	<artifactId>springboot</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<properties>
-		<start-class>demo.Application</start-class>
+		<start-class>jim.Application</start-class>
 		<java.version>1.8</java.version>
+		
+		<!-- maven package version dependencies below -->
 		<version.hsqldb>1.8.0.10</version.hsqldb>
 	</properties>
 
-	<name>demo</name>
-	<description>Demo project</description>
+	<name>spring boot</name>
+	<description>spring boot project</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

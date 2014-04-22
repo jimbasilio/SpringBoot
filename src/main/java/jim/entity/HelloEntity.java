@@ -1,4 +1,4 @@
-package entity;
+package jim.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

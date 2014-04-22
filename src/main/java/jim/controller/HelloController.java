@@ -1,13 +1,13 @@
-package controller;
+package jim.controller;
+
+import jim.dto.HelloDTO;
+import jim.service.HelloService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import service.HelloService;
-import dto.HelloDTO;
 
 @Controller
 @RequestMapping("/hello")
@@ -16,7 +16,7 @@ public class HelloController {
     @Autowired
     HelloService helloService;
     
-	@RequestMapping(method=RequestMethod.GET)
+	@RequestMapping(value="/", method=RequestMethod.GET)
 	public @ResponseBody HelloDTO say()
 	{
 		HelloDTO hi = new HelloDTO();
@@ -25,7 +25,7 @@ public class HelloController {
 		return hi;
 	}
 	
-	@RequestMapping(method=RequestMethod.GET)
+	@RequestMapping(value="/get/{id}", method=RequestMethod.GET)
 	public @ResponseBody HelloDTO get(Long id)
 	{
 		HelloDTO hi = new HelloDTO();

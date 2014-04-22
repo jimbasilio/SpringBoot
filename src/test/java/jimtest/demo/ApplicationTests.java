@@ -1,4 +1,6 @@
-package demo;
+package jimtest.demo;
+
+import jim.Application;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

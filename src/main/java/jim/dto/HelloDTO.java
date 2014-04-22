@@ -1,6 +1,6 @@
-package dto;
+package jim.dto;
 
-import entity.HelloEntity;
+import jim.entity.HelloEntity;
 
 public class HelloDTO {
 
