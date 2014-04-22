@@ -23,7 +23,7 @@ public class HelloService {
 		HelloEntity hello = new HelloEntity();
 		hello.setMyHello(toCreate.getMyHello());
 		
-		return helloRepository.saveAndFlush(hello).getId();
+		return helloRepository.save(hello).getId();
 	}
 	
 	@Transactional(readOnly = true)

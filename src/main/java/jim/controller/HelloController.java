@@ -5,6 +5,7 @@ import jim.service.HelloService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,12 +30,9 @@ public class HelloController {
 	}
 	
 	@RequestMapping(value="/get/{id}", method=RequestMethod.GET)
-	public @ResponseBody HelloDTO get(Long id)
-	{
-		HelloDTO hi = new HelloDTO();
-		hi.setMyHello("go penn state");
-		
-		return hi;
+	public @ResponseBody HelloDTO get(@PathVariable Long id)
+	{		
+		return this.helloService.findById(id);
 	}	
 	
     @RequestMapping(method=RequestMethod.POST)
