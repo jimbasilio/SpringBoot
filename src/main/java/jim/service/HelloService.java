@@ -21,9 +21,9 @@ public class HelloService {
 	public Long create(HelloDTO toCreate)
 	{
 		HelloEntity hello = new HelloEntity();
-		hello.setMyHello(hello.getMyHello());
+		hello.setMyHello(toCreate.getMyHello());
 		
-		return helloRepository.save(hello).getId();
+		return helloRepository.saveAndFlush(hello).getId();
 	}
 	
 	@Transactional(readOnly = true)

@@ -22,6 +22,9 @@ public class HelloController {
 		HelloDTO hi = new HelloDTO();
 		hi.setMyHello("go penn state");
 		
+		Long id = helloService.create(hi);
+		hi.setMyHello(hi.getMyHello() + " " + id.toString());
+		
 		return hi;
 	}
 	

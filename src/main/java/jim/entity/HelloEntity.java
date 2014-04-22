@@ -2,6 +2,8 @@ package jim.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -10,6 +12,7 @@ import javax.persistence.Table;
 public class HelloEntity {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long id;
 	
 	@Column(name = "my_hello", nullable=false)
