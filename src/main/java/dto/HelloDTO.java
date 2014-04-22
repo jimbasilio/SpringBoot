@@ -1,29 +1,28 @@
 package dto;
 
+import entity.HelloEntity;
+
 public class HelloDTO {
 
-	private String firstName;
-	private String lastName;
+	private String myHello;
 	
 	public HelloDTO() {
 		
 	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
 	
-	
+	public String getMyHello() {
+		return myHello;
+	}
+
+	public void setMyHello(String myHello) {
+		this.myHello = myHello;
+	}
+
+    static public HelloDTO Build(HelloEntity entity)
+    {
+        HelloDTO dto = new HelloDTO();
+        dto.setMyHello(entity.getMyHello());
+        
+        return dto;     
+    }
 }
