@@ -9,3 +9,6 @@ Will:
 * MVC JSON RPC
     * works
 * Simple angular frontend
+
+NOTES: 
+* don't seem to have to use spring.datasource.driverClassName in properties files.  only need spring.jpa.database-platform.  hsqldb worked fine with both specified, but h2 didn't ... removing it and both worked.  don't understand the autoconfig magic here but works fine.

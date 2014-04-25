@@ -4,7 +4,7 @@ import jim.entity.HelloEntity;
 
 public class HelloDTO {
 
-	private String myHello;
+ 	private String myHello;
 	
 	public HelloDTO() {
 		
