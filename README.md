@@ -4,8 +4,8 @@ Will:
 
 * have simple entity to persist
     * works by getting entity by id, not by insert yet
-* have multiple profiles for 2 different database providers (probably HSQL and PostgreSQL)
-    * hsqldb works.
+* have multiple profiles for 2 different database providers (HSQL and H2)
+    * works now.  can set profile at will in application.properties to use h2db or hsqldb independant of dev/prod setting.
 * MVC JSON RPC
     * works
 * Simple angular frontend

@@ -35,7 +35,7 @@ public class HelloController {
 		return this.helloService.findById(id);
 	}	
 	
-    @RequestMapping(method=RequestMethod.POST)
+    @RequestMapping(value="/save", method=RequestMethod.POST)
     public @ResponseBody Long store(HelloDTO dtoToStore)
     {
         Long newId = helloService.create(dtoToStore);
