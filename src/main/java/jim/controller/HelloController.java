@@ -21,7 +21,7 @@ public class HelloController {
 	public @ResponseBody HelloDTO say()
 	{
 		HelloDTO hi = new HelloDTO();
-		hi.setMyHello("go penn state");
+		hi.setMyHello("go penn state!");
 		
 		Long id = helloService.create(hi);
 		hi.setMyHello(hi.getMyHello() + " " + id.toString());
