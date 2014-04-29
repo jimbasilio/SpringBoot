@@ -3,17 +3,24 @@ package jim.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import jim.dto.HelloDTO;
 import jim.entity.HelloEntity;
 import jim.repository.HelloRepository;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class HelloService {
-
+    @PersistenceContext
+    private EntityManager entityManager;
+    
 	@Autowired
 	private HelloRepository helloRepository;
 	
@@ -37,7 +44,10 @@ public class HelloService {
 	@Transactional(readOnly = true)
 	public HelloDTO findById(Long id)
 	{
+	    Session session = (Session)this.entityManager.getDelegate();
+	    session.getSessionFactory().getStatistics().logSummary();
 		HelloEntity entity = helloRepository.findOne(id);
+        session.getSessionFactory().getStatistics().logSummary();
 		
 		return HelloDTO.Build(entity);
 	}
