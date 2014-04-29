@@ -11,7 +11,6 @@ import jim.entity.HelloEntity;
 import jim.repository.HelloRepository;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,37 +19,36 @@ import org.springframework.transaction.annotation.Transactional;
 public class HelloService {
     @PersistenceContext
     private EntityManager entityManager;
-    
-	@Autowired
-	private HelloRepository helloRepository;
-	
-	@Transactional(readOnly = false)
-	public Long create(HelloDTO toCreate)
-	{
-		HelloEntity hello = new HelloEntity();
-		hello.setMyHello(toCreate.getMyHello());
-		
-		return helloRepository.save(hello).getId();
-	}
-	
-	@Transactional(readOnly = true)
-	public List<HelloDTO> findAll()
-	{
-		List<HelloDTO> dtos = helloRepository.findAll().stream().map(entity -> HelloDTO.Build(entity)).collect(Collectors.toList());
 
-		return dtos;
-	}
+    @Autowired
+    private HelloRepository helloRepository;
 
-	@Transactional(readOnly = true)
-	public HelloDTO findById(Long id)
-	{
-	    Session session = (Session)this.entityManager.getDelegate();
-	    session.getSessionFactory().getStatistics().logSummary();
-		HelloEntity entity = helloRepository.findOne(id);
+    @Transactional(readOnly = false)
+    public Long create(HelloDTO toCreate) {
+        HelloEntity hello = new HelloEntity();
+        hello.setMyHello(toCreate.getMyHello());
+
+        return helloRepository.save(hello).getId();
+    }
+
+    @Transactional(readOnly = true)
+    public List<HelloDTO> findAll() {
+        List<HelloDTO> dtos = helloRepository.findAll().stream()
+                .map(entity -> HelloDTO.Build(entity))
+                .collect(Collectors.toList());
+
+        return dtos;
+    }
+
+    @Transactional(readOnly = true)
+    public HelloDTO findById(Long id) {
+        Session session = (Session) this.entityManager.getDelegate();
         session.getSessionFactory().getStatistics().logSummary();
-		
-		return HelloDTO.Build(entity);
-	}
+        HelloEntity entity = helloRepository.findOne(id);
+        entityManager.flush();
+        session.getSessionFactory().getStatistics().logSummary();
 
-	
+        return HelloDTO.Build(entity);
+    }
+
 }
