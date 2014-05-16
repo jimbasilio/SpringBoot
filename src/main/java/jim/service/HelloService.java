@@ -43,6 +43,7 @@ public class HelloService {
     @Transactional(readOnly = true)
     public HelloDTO findById(Long id) {
         Session session = (Session) this.entityManager.getDelegate();
+        // session.getSessionFactory().getStatistics().setStatisticsEnabled(true);
         session.getSessionFactory().getStatistics().logSummary();
         HelloEntity entity = helloRepository.findOne(id);
         entityManager.flush();
