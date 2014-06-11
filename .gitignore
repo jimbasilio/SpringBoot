@@ -1,7 +1,6 @@
 *~
 target/*
 bin/*
-.classpath
 /target
 npm-debug.log
 bower_components

@@ -11,6 +11,11 @@
 		<start-class>jim.Application</start-class>
 		<java.version>1.8</java.version>
 
+		<build.timestamp>${maven.build.timestamp}</build.timestamp>
+		<maven.build.timestamp.format>yyyy-MM-dd hh:mma</maven.build.timestamp.format>
+
+		<build.version>${project.version}</build.version>
+
 		<!-- maven package version dependencies below -->
 	</properties>
 
@@ -20,7 +25,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.0.2.RELEASE</version>
+		<version>1.1.0.RELEASE</version>
 	</parent>
 
 	<dependencies>
@@ -57,17 +62,32 @@
 		</dependency>
 	</dependencies>
 
+    <!-- in the m2e profile, insert a default for the build timestamp b/c sts/eclipse doesn't fill in the build timestamp -->
+    <!-- when building from commandline (i.e. mvn) this fills in correctly. -->
+	<profiles>
+		<profile>
+			<id>m2e</id>
+			<activation>
+				<property>
+					<name>m2e.version</name>
+				</property>
+			</activation>
+			<properties>
+				<maven.build.timestamp>UNKNOWN</maven.build.timestamp>
+			</properties>
+		</profile>
+	</profiles>
 
 	<build>
-    	<plugins>
-            <!-- Package as an executable jar -->
-	       <plugin>
-	           <groupId>org.springframework.boot</groupId>
-	           <artifactId>spring-boot-maven-plugin</artifactId>
-	       </plugin>
+		<plugins>
+			<!-- Package as an executable jar -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
 
-	        <!-- run bower install on eclipse build -->
-    		<plugin>
+			<!-- run bower install on eclipse build -->
+			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
 				<executions>
@@ -89,7 +109,8 @@
 		</plugins>
 		<pluginManagement>
 			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
 					<artifactId>lifecycle-mapping</artifactId>

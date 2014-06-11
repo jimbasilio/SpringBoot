@@ -17,14 +17,15 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class Application {
 
     public static void main(String[] args) {
-    	List<String> strings = new ArrayList<>();
-    	strings.add("blah");
-    	strings.add("blah2");
-    	
-    	List<String> result = strings.stream().filter(x -> x.equals("blah")).collect(Collectors.toList());
-    	
-    	System.out.println(result.get(0));
-    	
+        List<String> strings = new ArrayList<>();
+        strings.add("blah");
+        strings.add("blah2");
+
+        List<String> result = strings.stream().filter(x -> x.equals("blah"))
+                .collect(Collectors.toList());
+
+        System.out.println(result.get(0));
+
         SpringApplication.run(Application.class, args);
     }
 }
