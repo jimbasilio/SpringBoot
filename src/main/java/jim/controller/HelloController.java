@@ -1,8 +1,5 @@
 package jim.controller;
 
-import jim.dto.HelloDTO;
-import jim.service.HelloService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -10,6 +7,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import jim.dto.HelloDTO;
+import jim.service.HelloService;
 
 @Controller
 @RequestMapping("/hello")
@@ -21,17 +21,26 @@ public class HelloController {
     @Value("${app.build.date}")
     private String buildDate;
 
+    @Value("${hello.awesomefeature:false}")
+    private boolean awesomefeature;
+
     @Autowired
-    HelloService helloService;
+    private HelloService helloService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public @ResponseBody HelloDTO say() {
         HelloDTO hi = new HelloDTO();
-        hi.setMyHello("go penn state! Version " + this.version
+        hi.setMyHello("go spring boot! Version " + this.version
                 + " Build Date : " + this.buildDate);
 
         Long id = helloService.create(hi);
         hi.setMyHello(hi.getMyHello() + " " + id.toString());
+
+        if (this.awesomefeature) {
+            hi.setMyHello(
+                    "awesome feature turned on " + hi.getMyHello() + " !!!!");
+            System.out.println("awesome feature is ON!");
+        }
 
         return hi;
     }

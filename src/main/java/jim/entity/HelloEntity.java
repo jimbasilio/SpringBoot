@@ -14,11 +14,11 @@ public class HelloEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long id;
+	private Long id;
 	
 	@Column(name = "my_hello", nullable=false)
 	@NotNull
-	String myHello;
+	private String myHello;
 
 	public String getMyHello() {
 		return myHello;
